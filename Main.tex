@@ -1,0 +1,88 @@
+\documentclass[12pt,a4paper,oneside]{scrartcl}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{pdfpages}
+\usepackage{nomencl}
+
+\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\defaultfontfeatures{Mapping=tex-text}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\setmainfont[Path=fonts/,
+ItalicFont=EBGaramond12-Italic.otf,
+SmallCapsFont=EBGaramondSC12-Regular.otf]{EBGaramond12-Regular.otf}
+\setsansfont[Ligatures=NoCommon, Path=fonts/,
+BoldFont=Din Pro Bold 700.otf,
+ItalicFont=Din Pro Italic 400.otf]{DIN Pro 400.otf}
+\newfontfamily\ethbfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Black Italic 900.otf}
+\newfontfamily\ethfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Italic 400.otf}
+
+\usepackage[left=2cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage[onehalfspacing]{setspace}
+\usepackage{lastpage}
+
+
+\newcommand{\docAuthor}{Andreas Felderer}
+\newcommand{\docMatNr}{19-907-781}
+\newcommand{\docTitle}{Title}
+\newcommand{\docSubTitle}{Sub Title}
+\newcommand{\docTypeofWork}{Case study in ...}
+\newcommand{\docLectureTitle}{Title of the Class}
+\newcommand{\docLectureNumber}{851-0740-00L}
+\newcommand{\docTeacher}{Teacher}
+\newcommand{\docUni}{{\ethbfont E\!T\!H}{\ethfont zürich}}
+% Semester
+\newcommand{\docTerm}{FS 2021}
+
+
+\lhead[]{\small{\docUni , {\sffamily \docTerm}} }
+\chead[]{\small{\textit{\docLectureTitle} }}
+\rhead[]{\small  \docTeacher}
+
+\lfoot[]{\small{\docAuthor; \docMatNr; M.Sc. Science, Technology and Policy} }% 
+\cfoot[]{\small{}}
+\rfoot[]{\small{\docTitle \ \thepage}}
+
+\author{\docAuthor}
+\title{\docTitle}
+\usepackage[
+    backend=biber,
+    style=authoryear-ibid,
+    natbib=true,
+    url=true, 
+    doi=false,
+    eprint=false
+]{biblatex}
+\addbibresource{./Bib.bib}
+
+\usepackage[autostyle]{csquotes}
+
+\begin{document}
+\input{sections/00_Titlepage}
+
+\pagenumbering{Roman}
+\input{sections/99_Nomenclature}
+\tableofcontents
+\newpage
+\pagenumbering{arabic} 
+\setcounter{page}{2}
+
+\input{sections/01_Intro.tex}
+
+
+\newpage
+\pagenumbering{Roman}
+\printbibliography
+
+\appendix
+\input{sections/98_Appendix}
+
+\end{document}
