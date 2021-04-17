@@ -5,10 +5,26 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 
-\usepackage[hidelinks]{hyperref}
+%%% Colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{linkgray}{gray}{0.2}
+\definecolor{mygreen}{cmyk}{0.98, 0.00, 0.93, 0.61}
+
 \usepackage{pdfpages}
 \usepackage{nomencl}
 
+%%% TODO Notes
+\setlength{\marginparwidth }{2cm}
+\usepackage{xargs} 
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcounter{todocounter}  
+\newcommandx{\todoc}[2][1=]{\stepcounter{todocounter}\todo[linecolor=yellow,backgroundcolor=yellow!25,bordercolor=yellow,#1]{\sffamily \thetodocounter: #2}}
+\newcommandx{\unsure}[2][1=]{\stepcounter{todocounter}\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{\sffamily \thetodocounter: #2}}
+\newcommandx{\change}[2][1=]{\stepcounter{todocounter}\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{\sffamily \thetodocounter: #2}}
+\newcommandx{\info}[2][1=]{\stepcounter{todocounter}\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{\sffamily \thetodocounter: #2}}
+\newcommandx{\improvement}[2][1=]{\stepcounter{todocounter}\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{\sffamily \thetodocounter: #2}}
+
+%%%Fonts
 \usepackage[utf8]{inputenc}
 \usepackage{fontspec}
 \defaultfontfeatures{Mapping=tex-text}
@@ -23,30 +39,32 @@ ItalicFont=Din Pro Italic 400.otf]{DIN Pro 400.otf}
 \newfontfamily\ethbfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Black Italic 900.otf}
 \newfontfamily\ethfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Italic 400.otf}
 
+
+%%% Formatting
 \usepackage[left=2cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{lastpage}
 
-
+%%% Set Variable
 \newcommand{\docAuthor}{Andreas Felderer}
 \newcommand{\docMatNr}{19-907-781}
-\newcommand{\docTitle}{Title}
-\newcommand{\docSubTitle}{Sub Title}
+\newcommand{\docTitle}{Big Tech, Merchants of Doubt?}
+\newcommand{\docSubTitle}{Google and the transparency of its research funding.\\ A Case Study}
 \newcommand{\docTypeofWork}{Case study in ...}
-\newcommand{\docLectureTitle}{Title of the Class}
+\newcommand{\docLectureTitle}{Big Data, Law and Policy}
 \newcommand{\docLectureNumber}{851-0740-00L}
-\newcommand{\docTeacher}{Teacher}
+\newcommand{\docTeacher}{Prof. Stefan Bechtold}
 \newcommand{\docUni}{{\ethbfont E\!T\!H}{\ethfont zürich}}
 % Semester
 \newcommand{\docTerm}{FS 2021}
 
-
-\lhead[]{\small{\docUni , {\sffamily \docTerm}} }
+%%% Header
+\lhead[]{\small{\includegraphics[height=8pt]{figures/ETHZ_logo_black.png}{\sffamily, \docTerm}} }
 \chead[]{\small{\textit{\docLectureTitle} }}
 \rhead[]{\small  \docTeacher}
-
+%%% Footer
 \lfoot[]{\small{\docAuthor; \docMatNr; M.Sc. Science, Technology and Policy} }% 
 \cfoot[]{\small{}}
 \rfoot[]{\small{\docTitle \ \thepage}}
@@ -65,23 +83,44 @@ ItalicFont=Din Pro Italic 400.otf]{DIN Pro 400.otf}
 
 \usepackage[autostyle]{csquotes}
 
+\usepackage[colorlinks,breaklinks]{hyperref}
+\hypersetup{urlcolor=mygreen,linkcolor=linkgray}
+
+
+%%% Document
 \begin{document}
+
+%%% Titleage
 \input{sections/00_Titlepage}
 
-\pagenumbering{Roman}
-\input{sections/99_Nomenclature}
-\tableofcontents
+%%% TODO
+\listoftodos[Notes]
+\todoc{Remove}
 \newpage
+
+%%% Nomenclature + TOC
+\pagenumbering{Roman}
+\tableofcontents
+\input{sections/99_Nomenclature}
+\newpage
+
+%%% Start of Content
 \pagenumbering{arabic} 
 \setcounter{page}{2}
+\todoc{Fix Pagenumber}
 
+%%% Intro
 \input{sections/01_Intro.tex}
 
-
 \newpage
+\setcounter{page}{12}
+\todoc{Fix Page number}
+
+%%% Bibliography
 \pagenumbering{Roman}
 \printbibliography
 
+%%% Appendix
 \appendix
 \input{sections/98_Appendix}
 
