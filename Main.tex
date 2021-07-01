@@ -8,7 +8,7 @@
 
 %%% Colors
 \usepackage[dvipsnames]{xcolor}
-\definecolor{linkgray}{gray}{0.3}
+\definecolor{linkgray}{gray}{0.2}
 \definecolor{mygreen}{cmyk}{0.98, 0.00, 0.93, 0.61}
 
 \usepackage{pdfpages}
@@ -121,8 +121,7 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
     xindy,% xindy zum Indexieren verwenden
     acronym,% Separates Akronym-Verzeichnis
     nopostdot,% Kein Punkt am Ende einer Beschreibung im Glossar
-    nomain,toc,numberline
-]{glossaries}
+    nomain,toc,numberline]{glossaries}
 
 \input{sections/99_Nomenclature}
 \makenoidxglossaries
@@ -140,7 +139,7 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 %%% Nomenclature + TOC
 \pagenumbering{Roman}
 \tableofcontents
-\printnoidxglossary[type=acronym]
+%\printnoidxglossary[type=acronym]
 \printacronyms%[title={Acronyms}]% 
 \newpage
 
@@ -179,6 +178,6 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 
 %%% Appendix
 \appendix
-%\input{sections/98_Appendix}
+\input{sections/98_Appendix}
 
 \end{document}
