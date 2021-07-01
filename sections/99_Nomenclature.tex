@@ -1,9 +1,40 @@
-\makenomenclature
+\input{sections/97_Abbreviations}
+\setacronymstyle{long-short}
 
-\nomenclature{$ETH$}{Eidgenössische Technische Hochschule}
+\makeatletter
+\newlength{\@glsdotsep}
+\setlength{\@glsdotsep}{\@dotsep em}
+\newcommand*{\glsdotfill}{\leavevmode \cleaders \hb@xt@ \@glsdotsep{\hss .\hss }\hfill \kern \z@}
+\makeatother
+
+\newglossarystyle{WissenschaftlicheArbeiten}{%
+  \setglossarystyle{index}%
+
+  \renewcommand*{\glossaryheader}{\vspace{.75em}}%
+  \renewcommand*{\glstreenamefmt}[1]{##1}%
+  \renewcommand*{\glossentry}[2]{%
+     \item\glsentryitem{##1}\glstreenamefmt{\glstarget{##1}{\glossentryname{##1}}}%
+     \ifglshassymbol{##1}{\space(\glossentrysymbol{##1})}{}%
+     \space-\space\glossentrydesc{##1}\glsdotfill\glspostdescription\space ##2%
+  }%
+  \renewcommand*{\glsgroupheading}[1]{%
+    \item\glstreenamefmt{\textbf{\fontsize{14}{17}\selectfont\enskip\glsgetgrouptitle{##1}}}\vspace{.3em}}%
+}
+
+\setglossarystyle{WissenschaftlicheArbeiten}
+
+
+
+%\makenomenclature
+
+%\nomenclature{ETH}{Eidgenössische Technische Hochschule}
+%\nomenclature{FB}{Facebook}
+%\nomenclature{SNS}{Social Network Service}
+%\nomenclature{PR}{Pubblic Realtions}
+%\nomenclature{}{}
 
 % Optional multicolumn
 %\begin{multicols}{2}
-\printnomenclature[6em] % [] determine the white space in horizontal direction
+%\printnomenclature[6em] % [] determine the white space in horizontal direction
 %\end{multicols}
-\addcontentsline{toc}{section}{Nomenclature}
+%\addcontentsline{toc}{section}{Nomenclature}

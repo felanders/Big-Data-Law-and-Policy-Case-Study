@@ -1,5 +1,6 @@
-\documentclass[12pt,a4paper,oneside]{scrartcl}
+\documentclass[12pt,a4paper,oneside,DIV=calc]{scrartcl}
 \usepackage[english]{babel}
+\usepackage{url}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -7,14 +8,14 @@
 
 %%% Colors
 \usepackage[dvipsnames]{xcolor}
-\definecolor{linkgray}{gray}{0.2}
+\definecolor{linkgray}{gray}{0.3}
 \definecolor{mygreen}{cmyk}{0.98, 0.00, 0.93, 0.61}
 
 \usepackage{pdfpages}
 \usepackage{nomencl}
 
 %%% TODO Notes
-\setlength{\marginparwidth }{2cm}
+%\setlength{\marginparwidth }{2.5cm}
 \usepackage{xargs} 
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 \newcounter{todocounter}  
@@ -30,98 +31,154 @@
 \defaultfontfeatures{Mapping=tex-text}
 \usepackage{xunicode}
 \usepackage{xltxtra}
-\setmainfont[Path=fonts/,
-ItalicFont=EBGaramond12-Italic.otf,
-SmallCapsFont=EBGaramondSC12-Regular.otf]{EBGaramond12-Regular.otf}
-\setsansfont[Ligatures=NoCommon, Path=fonts/,
-BoldFont=Din Pro Bold 700.otf,
-ItalicFont=Din Pro Italic 400.otf]{DIN Pro 400.otf}
-\newfontfamily\ethbfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Black Italic 900.otf}
-\newfontfamily\ethfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Italic 400.otf}
+%\setmainfont[Path=fonts/,
+%ItalicFont=EBGaramond12-Italic.otf,
+%SmallCapsFont=EBGaramondSC12-Regular.otf]{EBGaramond12-Regular.otf}
+%\setmainfont[Path=fonts/,
+%ItalicFont=OFLGoudyStM-Italic.otf]{OFLGoudyStM.otf}
+%\setmainfont[Path=fonts/,
+%ItalicFont=Fanwood-Text-Italic.otf]{Fanwood-Text.otf}
+%\setmainfont[Path=fonts/,
+%ItalicFont=OFLGoudyStM-Italic.otf]{GoudyBookletter1911.otf}
+%\setmainfont[Path=fonts/]{Minion-Pro-Display.otf}
+%\setmainfont[Path=fonts/,
+%ItalicFont=texgyrepagella-italic.otf]{texgyrepagella-regular.otf}
+\setmainfont[Path=fonts/,Numbers={OldStyle},
+ItalicFont=ArnoPro-Italic.otf]{ArnoPro-Regular.otf}
+
+%\setsansfont[Ligatures=NoCommon, Path=fonts/,
+%BoldFont=Din Pro Bold 700.otf,
+%ItalicFont=Din Pro Italic 400.otf]{DIN Pro 400.otf}
+%\setsansfont[Path=fonts/,
+%BoldFont=Raleway-Bold.otf,
+%ItalicFont=Raleway-MediumItalic.otf]{Raleway-Medium.otf}
+\setsansfont[Path=fonts/,
+BoldFont=Raleway-Medium.otf,
+ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
+%\setsansfont[Ligatures=NoCommon, Path=fonts/,
+%BoldFont=Junction-bold.otf]{Junction-regular.otf}
+\newfontfamily\ethbfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Bold 700.otf}
+\newfontfamily\ethbitfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Black Italic 900.otf}
+\newfontfamily\ethitfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Italic 400.otf}
+\newfontfamily\ethfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro 400.otf}
 
 
 %%% Formatting
-\usepackage[left=2cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
+%\usepackage[left=2cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\usepackage[onehalfspacing]{setspace}
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\footnotesize \itshape}
+\usepackage{setspace}
+\setstretch{1.15}
+%\setlength{\parindent}{1em}
 \usepackage{lastpage}
 
 %%% Set Variable
 \newcommand{\docAuthor}{Andreas Felderer}
 \newcommand{\docMatNr}{19-907-781}
 \newcommand{\docTitle}{Big Tech, Merchants of Doubt?}
-\newcommand{\docSubTitle}{Google and the transparency of its research funding.\\ A Case Study}
+\newcommand{\docSubTitle}{Facebook and Social Network Addiction\\ A Case Study}
 \newcommand{\docTypeofWork}{Case study in ...}
-\newcommand{\docLectureTitle}{Big Data, Law and Policy}
+\newcommand{\docLectureTitle}{Big Data, Law, and Policy}
 \newcommand{\docLectureNumber}{851-0740-00L}
 \newcommand{\docTeacher}{Prof. Stefan Bechtold}
-\newcommand{\docUni}{{\ethbfont E\!T\!H}{\ethfont zürich}}
+\newcommand{\docUni}{ETH Zürich}
 % Semester
-\newcommand{\docTerm}{FS 2021}
+\newcommand{\docTerm}{Spring Term 21}
+\newcommand{\docTermShort}{ST 21}
 
 %%% Header
-\lhead[]{\small{\includegraphics[height=8pt]{figures/ETHZ_logo_black.png}{\sffamily, \docTerm}} }
-\chead[]{\small{\textit{\docLectureTitle} }}
-\rhead[]{\small  \docTeacher}
+%\lhead[]{\small{\includegraphics[height=8pt]{figures/ETHZ_logo_black.png}{\ethfont{\textit{, \docTermShort}}}} }
+\lhead[]{\sffamily\footnotesize{\docUni, {\scriptsize ST} 21}} 
+\chead[]{\sffamily\footnotesize{\textit{\docLectureTitle} }}
+\rhead[]{\sffamily\footnotesize{\docTeacher}}
 %%% Footer
-\lfoot[]{\small{\docAuthor; \docMatNr; M.Sc. Science, Technology and Policy} }% 
-\cfoot[]{\small{}}
-\rfoot[]{\small{\docTitle \ \thepage}}
+\lfoot[]{\footnotesize{\sffamily\docAuthor; \docMatNr}}%; M.Sc. Science, Technology and Policy} }% 
+\cfoot[]{\footnotesize{}}
+\rfoot[]{\footnotesize{\sffamily \docTitle \,$\cdot$\,\thepage}}
 
 \author{\docAuthor}
 \title{\docTitle}
 \usepackage[
     backend=biber,
-    style=authoryear-ibid,
+    style=apa,%authoryear-ibid
     natbib=true,
     url=true, 
     doi=false,
     eprint=false
 ]{biblatex}
-\addbibresource{./Bib.bib}
-
+\addbibresource{./BDLP.bib}
+\usepackage{multicol}
+\usepackage{multido}
 \usepackage[autostyle]{csquotes}
 
 \usepackage[colorlinks,breaklinks]{hyperref}
-\hypersetup{urlcolor=mygreen,linkcolor=linkgray}
+\hypersetup{urlcolor=mygreen,linkcolor=linkgray,citecolor=mygreen}
 
+\usepackage[
+  	indexonlyfirst,% only index first use%
+    xindy,% xindy zum Indexieren verwenden
+    acronym,% Separates Akronym-Verzeichnis
+    nopostdot,% Kein Punkt am Ende einer Beschreibung im Glossar
+    nomain,toc,numberline
+]{glossaries}
 
+\input{sections/99_Nomenclature}
+\makenoidxglossaries
 %%% Document
 \begin{document}
-
+\def\&{\XeTeXglyph307 }
 %%% Titleage
 \input{sections/00_Titlepage}
 
 %%% TODO
-\listoftodos[Notes]
-\todoc{Remove}
-\newpage
+%\listoftodos[Notes]
+%\todoc{Remove}
+%\newpage
 
 %%% Nomenclature + TOC
 \pagenumbering{Roman}
 \tableofcontents
-\input{sections/99_Nomenclature}
+\printnoidxglossary[type=acronym]
+\printacronyms%[title={Acronyms}]% 
 \newpage
 
 %%% Start of Content
 \pagenumbering{arabic} 
 \setcounter{page}{2}
-\todoc{Fix Pagenumber}
+%\todoc{Fix Pagenumber}
 
 %%% Intro
-\input{sections/01_Intro.tex}
-
+\input{sections/01_Intro}
+\input{sections/02_Problematic_SNS_use}
+\input{sections/03_Funding_Deep_Dive}
+\input{sections/04_Conclusion}
 \newpage
-\setcounter{page}{12}
-\todoc{Fix Page number}
+
+\XeTeXglyph113
+\XeTeXglyph244
+\XeTeXglyph364
+\XeTeXglyph402
+
+%\begin{multicols}{4}
+%\multido{\i=0+1}{"10000}{% from U+0000 to U+FFFF
+%  \iffontchar\font\i
+%    \makebox[3em][l]{\i}%
+%    \XeTeXglyph\i\endgraf
+%  \fi
+%}
+%\end{multicols}
 
 %%% Bibliography
 \pagenumbering{Roman}
+\setcounter{page}{7}
+\todoc{Make sure to fix Page number}
+\addcontentsline{toc}{section}{References}
 \printbibliography
 
 %%% Appendix
 \appendix
-\input{sections/98_Appendix}
+%\input{sections/98_Appendix}
 
 \end{document}
