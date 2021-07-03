@@ -102,7 +102,7 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 \title{\docTitle}
 \usepackage[
     backend=biber,
-    style=apa,%authoryear-ibid
+    style=numeric-comp,%apa,%authoryear-ibid
     natbib=true,
     url=true, 
     doi=false,
@@ -121,16 +121,19 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
     xindy,% xindy zum Indexieren verwenden
     acronym,% Separates Akronym-Verzeichnis
     nopostdot,% Kein Punkt am Ende einer Beschreibung im Glossar
-    nomain,toc,numberline]{glossaries}
+    nomain,toc]{glossaries}
+\usepackage{glossary-mcols}
+
 
 \input{sections/99_Nomenclature}
-\makenoidxglossaries
+\makeglossaries
 %%% Document
 \begin{document}
 \def\&{\XeTeXglyph307 }
 %%% Titleage
 \input{sections/00_Titlepage}
-
+\input{sections/00_Abstract}
+\newpage
 %%% TODO
 %\listoftodos[Notes]
 %\todoc{Remove}
@@ -139,13 +142,12 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 %%% Nomenclature + TOC
 \pagenumbering{Roman}
 \tableofcontents
-%\printnoidxglossary[type=acronym]
-\printacronyms%[title={Acronyms}]% 
+\printglossary[style=mcolindex, type=acronym]
 \newpage
 
 %%% Start of Content
 \pagenumbering{arabic} 
-\setcounter{page}{2}
+\setcounter{page}{1}
 %\todoc{Fix Pagenumber}
 
 %%% Intro
@@ -178,6 +180,6 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 
 %%% Appendix
 \appendix
-\input{sections/98_Appendix}
+%\input{sections/98_Appendix}
 
 \end{document}

@@ -15,10 +15,11 @@
   \renewcommand*{\glossentry}[2]{%
      \item\glsentryitem{##1}\glstreenamefmt{\glstarget{##1}{\glossentryname{##1}}}%
      \ifglshassymbol{##1}{\space(\glossentrysymbol{##1})}{}%
-     \space-\space\glossentrydesc{##1}\glsdotfill\glspostdescription\space ##2%
+     \space-\space\glossentrydesc{##1}%\glsdotfill
+     %\glspostdescription\space ##2%
   }%
-  \renewcommand*{\glsgroupheading}[1]{%
-    \item\glstreenamefmt{\textbf{\fontsize{14}{17}\selectfont\enskip\glsgetgrouptitle{##1}}}\vspace{.3em}}%
+  %\renewcommand*{\glsgroupheading}[1]{%
+  %  \item\glstreenamefmt{\textbf{\fontsize{14}{17}\selectfont\enskip\glsgetgrouptitle{##1}}}\vspace{.3em}}%
 }
 
 \setglossarystyle{WissenschaftlicheArbeiten}
