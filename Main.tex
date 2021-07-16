@@ -1,18 +1,65 @@
 \documentclass[12pt,a4paper,oneside,DIV=calc]{scrartcl}
-\usepackage[english]{babel}
+\usepackage{polyglossia}
+\setdefaultlanguage[variant=british]{english}
 \usepackage{url}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{multido}
+\usepackage{enumitem}
+%\usepackage{pdfpages}
+\usepackage{nomencl}
+\usepackage{subcaption}
+
+%%% Formatting
+\usepackage{geometry}
+\usepackage{lscape}
+\usepackage{longtable}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{marginnote}
+\renewcommand*{\marginfont}{\footnotesize \itshape}
+\usepackage{setspace}
+\setstretch{1.15}
+%\setlength{\parindent}{1em}
+\usepackage{lastpage}
 
 %%% Colors
-\usepackage[dvipsnames]{xcolor}
+\usepackage{xcolor}
+\PassOptionsToPackage{dvipsnames}{xcolor}
 \definecolor{linkgray}{gray}{0.2}
 \definecolor{mygreen}{cmyk}{0.98, 0.00, 0.93, 0.61}
 
-\usepackage{pdfpages}
-\usepackage{nomencl}
+\usepackage[
+    backend=biber,
+    style=alphabetic,
+    citestyle=alphabetic,
+    natbib=true,
+    url=true, 
+    doi=true,
+    eprint=false,
+    maxbibnames=10
+]{biblatex}
+\addbibresource{./BDLP.bib}
+\renewcommand*{\multicitedelim}{\addcomma\space}
+
+\setcounter{abbrvpenalty}{0}
+\setcounter{highnamepenalty}{0}
+\setcounter{lownamepenalty}{0}
+% If you want to break on URL numbers
+\setcounter{biburlnumpenalty}{9000}
+% If you want to break on URL lower case letters
+\setcounter{biburllcpenalty}{9000}
+% If you want to break on URL UPPER CASE letters
+\setcounter{biburlucpenalty}{9000}
+
+\usepackage{microtype}
 
 %%% TODO Notes
 %\setlength{\marginparwidth }{2.5cm}
@@ -27,6 +74,7 @@
 
 %%%Fonts
 \usepackage[utf8]{inputenc}
+\usepackage[autostyle]{csquotes}
 \usepackage{fontspec}
 \defaultfontfeatures{Mapping=tex-text}
 \usepackage{xunicode}
@@ -62,19 +110,7 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 \newfontfamily\ethitfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro Italic 400.otf}
 \newfontfamily\ethfont[Ligatures=NoCommon, Path=fonts/]{DIN Pro 400.otf}
 
-
-%%% Formatting
-%\usepackage[left=2cm,right=3cm,top=2.5cm,bottom=2.5cm]{geometry}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\usepackage{marginnote}
-\renewcommand*{\marginfont}{\footnotesize \itshape}
-\usepackage{setspace}
-\setstretch{1.15}
-%\setlength{\parindent}{1em}
-\usepackage{lastpage}
-
-%%% Set Variable
+%%% Set Variables
 \newcommand{\docAuthor}{Andreas Felderer}
 \newcommand{\docMatNr}{19-907-781}
 \newcommand{\docTitle}{Big Tech, Merchants of Doubt?}
@@ -87,6 +123,8 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 % Semester
 \newcommand{\docTerm}{Spring Term 21}
 \newcommand{\docTermShort}{ST 21}
+\author{\docAuthor}
+\title{\docTitle}
 
 %%% Header
 %\lhead[]{\small{\includegraphics[height=8pt]{figures/ETHZ_logo_black.png}{\ethfont{\textit{, \docTermShort}}}} }
@@ -97,70 +135,79 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 \lfoot[]{\footnotesize{\sffamily\docAuthor; \docMatNr}}%; M.Sc. Science, Technology and Policy} }% 
 \cfoot[]{\footnotesize{}}
 \rfoot[]{\footnotesize{\sffamily \docTitle \,$\cdot$\,\thepage}}
+\usepackage{titlesec}
+\titleformat{\section}{\sffamily\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\sffamily\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\sffamily\large}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]{\sffamily\normalsize}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]{\normalfont\normalsize\itshape}{\thesubparagraph}{1em}{}
 
-\author{\docAuthor}
-\title{\docTitle}
-\usepackage[
-    backend=biber,
-    style=numeric-comp,%apa,%authoryear-ibid
-    natbib=true,
-    url=true, 
-    doi=false,
-    eprint=false
-]{biblatex}
-\addbibresource{./BDLP.bib}
-\usepackage{multicol}
-\usepackage{multido}
-\usepackage[autostyle]{csquotes}
-
-\usepackage[colorlinks,breaklinks]{hyperref}
-\hypersetup{urlcolor=mygreen,linkcolor=linkgray,citecolor=mygreen}
-
+\usepackage{footmisc}
 \usepackage[
   	indexonlyfirst,% only index first use%
     xindy,% xindy zum Indexieren verwenden
+    nogroupskip,
     acronym,% Separates Akronym-Verzeichnis
     nopostdot,% Kein Punkt am Ende einer Beschreibung im Glossar
-    nomain,toc]{glossaries}
-\usepackage{glossary-mcols}
+    nomain]{glossaries}
+%\usepackage{glossary-mcols}
+\input{sections/97_Abbreviations}
 
+\usepackage{xurl}
+\usepackage[colorlinks,breaklinks,hyperfootnotes=false]{hyperref}
+\hypersetup{urlcolor=mygreen,linkcolor=linkgray,citecolor=mygreen}
 
-\input{sections/99_Nomenclature}
-\makeglossaries
-%%% Document
+%%%%%%%%%%%%%%%%%
+
+%%% Document %%%%
+
+%%%%%%%%%%%%%%%%%
 \begin{document}
+
 \def\&{\XeTeXglyph307 }
 %%% Titleage
 \input{sections/00_Titlepage}
+\pagenumbering{Roman}
 \input{sections/00_Abstract}
 \newpage
-%%% TODO
-%\listoftodos[Notes]
-%\todoc{Remove}
-%\newpage
-
-%%% Nomenclature + TOC
-\pagenumbering{Roman}
 \tableofcontents
-\printglossary[style=mcolindex, type=acronym]
 \newpage
 
 %%% Start of Content
 \pagenumbering{arabic} 
-\setcounter{page}{1}
-%\todoc{Fix Pagenumber}
+\setcounter{page}{3}
 
 %%% Intro
 \input{sections/01_Intro}
 \input{sections/02_Problematic_SNS_use}
-\input{sections/03_Funding_Deep_Dive}
+\input{sections/03_Funding_Example}
 \input{sections/04_Conclusion}
 \newpage
 
-\XeTeXglyph113
-\XeTeXglyph244
-\XeTeXglyph364
-\XeTeXglyph402
+%\XeTeXglyph113
+%\XeTeXglyph244
+%\XeTeXglyph364
+%\XeTeXglyph402
+
+%%% Bibliography
+\appendix
+%\pagenumbering{Roman}
+%\setcounter{page}{29}
+\section{Acronyms}
+\renewcommand{\glossarysection}[2][]{}
+\glssetwidest{nomophobiaabc}
+\setglossarystyle{alttree}
+\printglossary[type=acronym]
+
+
+
+%%% Appendix
+\input{sections/98_Appendix}
+\section{References}
+\sloppy
+%\printbibliography[heading=none]
+
+\end{document}
 
 %\begin{multicols}{4}
 %\multido{\i=0+1}{"10000}{% from U+0000 to U+FFFF
@@ -170,16 +217,3 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 %  \fi
 %}
 %\end{multicols}
-
-%%% Bibliography
-\pagenumbering{Roman}
-\setcounter{page}{7}
-\todoc{Make sure to fix Page number}
-\addcontentsline{toc}{section}{References}
-\printbibliography
-
-%%% Appendix
-\appendix
-%\input{sections/98_Appendix}
-
-\end{document}
