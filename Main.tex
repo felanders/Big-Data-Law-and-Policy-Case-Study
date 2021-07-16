@@ -59,8 +59,6 @@
 % If you want to break on URL UPPER CASE letters
 \setcounter{biburlucpenalty}{9000}
 
-\usepackage{microtype}
-
 %%% TODO Notes
 %\setlength{\marginparwidth }{2.5cm}
 \usepackage{xargs} 
@@ -153,6 +151,8 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 %\usepackage{glossary-mcols}
 \input{sections/97_Abbreviations}
 
+\usepackage{microtype}
+
 \usepackage{xurl}
 \usepackage[colorlinks,breaklinks,hyperfootnotes=false]{hyperref}
 \hypersetup{urlcolor=mygreen,linkcolor=linkgray,citecolor=mygreen}
@@ -184,28 +184,16 @@ ItalicFont=Raleway-LightItalic.otf]{Raleway-Light.otf}
 \input{sections/04_Conclusion}
 \newpage
 
-%\XeTeXglyph113
-%\XeTeXglyph244
-%\XeTeXglyph364
-%\XeTeXglyph402
-
 %%% Bibliography
 \appendix
-%\pagenumbering{Roman}
-%\setcounter{page}{29}
-\section{Acronyms}
-\renewcommand{\glossarysection}[2][]{}
-\glssetwidest{nomophobiaabc}
-\setglossarystyle{alttree}
-\printglossary[type=acronym]
-
 
 
 %%% Appendix
 \input{sections/98_Appendix}
+
 \section{References}
 \sloppy
-%\printbibliography[heading=none]
+\printbibliography[heading=none]
 
 \end{document}
 
